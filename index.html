@@ -217,7 +217,7 @@
 
 			const ENTIRE_SCENE = 0, BLOOM_SCENE = 1;
 			let analyser;
-			let sizeVal = 1.5;
+			let sizeVal = 0;
 
 			const bloomLayer = new THREE.Layers();
 			bloomLayer.set( BLOOM_SCENE );
@@ -419,10 +419,10 @@
 
 					const loader = new THREE.AudioLoader();
 					loader.load( file, function ( buffer ) {
-
+						audio.setRefDistance( 2000 );
 						audio.setBuffer( buffer );
-						audio.setLoop(true);
-						audio.setRefDistance(2000);
+						// audio.setLoop(true);
+					//	audio.setRefDistance(2000);
 						document.addEventListener("click", () => {
 			
 							
@@ -449,8 +449,12 @@
 				audio.hasPlaybackControl = true;
 				document.addEventListener("click", () => {
 					audio.play();
-					audio.noteOn();
-					console.log(audio)
+				//	audio.noteOn();
+					//audio.start();
+							var source = listener.context.createBufferSource();
+				source.connect(listener.context.destination);
+				source.start();
+					// console.log(audio)
 					
 						
 				})
@@ -458,15 +462,27 @@
 			}, 1000);
 				
 
+			// function playSound() {
+			// 	audioLoader.load("clips/theme_80.mp3", function(buffer) {
+			// 		sound.setBuffer( buffer );
+			// 		sound.setRefDistance( 20 );
+			// 		sound.play();
+			// 	});
+
+			// 	var source = listener.context.createBufferSource();
+			// 	source.connect(listener.context.destination);
+			// 	source.start();
+			// 	}
+			// 	window.addEventListener('touchstart', playSound);
+			// 	document.addEventListener('click', playSound);
+
 				// setInterval(() => {
 				// 	// console.log(Math.max(...analyser.data))
 				// 	console.log(sizeVal)
 				// 	// sizeVal = Math.max(...analyser.data);
-				// 	if(analyser.data > 0){
-				// 		console.log("heeey")
-				// 	} 
+				
 				// 	// console.log(analyser)
-				// }, 3);
+				// }, 100);
 
 				
 
@@ -842,25 +858,32 @@
 			
 				if(analyser)	sizeVal = Math.max(...analyser.data) / 80;
 
-				if(sizeVal < 3 && sizeVal > 2.9){
+				if(sizeVal < 3.1 && sizeVal > 3.05){
 			
-					uniforms4.color1.value = new THREE.Color(0xff2596);
-					uniforms4.color2.value = new THREE.Color(0x57063d);
+					// uniforms4.color1.value = new THREE.Color(0xff2596);
+					// uniforms4.color2.value = new THREE.Color(0x57063d);
 							uniforms3.color1.value = new THREE.Color(0xFFD225 );
 					uniforms3.color2.value = new THREE.Color(0xff760f);
 				} 
 				
-				else if(sizeVal < 3.1 && sizeVal > 2.9){
+				
+			else if(sizeVal < 3.04 && sizeVal > 3.00){
 					uniforms4.color1.value = new THREE.Color(0xff2596);
 					uniforms4.color2.value = new THREE.Color(0x57063d);
-							uniforms3.color1.value = new THREE.Color(0xFFD225 );
-					uniforms3.color2.value = new THREE.Color(0xff760f);
+					// 		uniforms3.color1.value = new THREE.Color(0xFFD225 );
+					// uniforms3.color2.value = new THREE.Color(0xff760f);
+				}
+				else if(sizeVal < 3.1 && sizeVal > 3.07){
+					uniforms4.color1.value = new THREE.Color(0xff2596);
+					uniforms4.color2.value = new THREE.Color(0x57063d);
+					// 		uniforms3.color1.value = new THREE.Color(0xFFD225 );
+					// uniforms3.color2.value = new THREE.Color(0xff760f);
 				}
 				
 				
 				else if(sizeVal < 2.8 && sizeVal > 2.5){
-					uniforms4.color1.value = new THREE.Color(0xff2596);
-					uniforms4.color2.value = new THREE.Color(0x57063d);
+					// uniforms4.color1.value = new THREE.Color(0xff2596);
+					// uniforms4.color2.value = new THREE.Color(0x57063d);
 							uniforms3.color1.value = new THREE.Color(0xFFD225 );
 					uniforms3.color2.value = new THREE.Color(0xff760f);
 				}
@@ -868,29 +891,29 @@
 				else if(sizeVal < 2.5 && sizeVal > 2.2){
 					uniforms4.color1.value = new THREE.Color(0xff2596);
 					uniforms4.color2.value = new THREE.Color(0x57063d);
-							uniforms3.color1.value = new THREE.Color(0xFFD225 );
-					uniforms3.color2.value = new THREE.Color(0xff760f);
+					// 		uniforms3.color1.value = new THREE.Color(0xFFD225 );
+					// uniforms3.color2.value = new THREE.Color(0xff760f);
 				}
 
 				else if(sizeVal < 2.1 && sizeVal > 1.8){
 					uniforms4.color1.value = new THREE.Color(0xff2596);
 					uniforms4.color2.value = new THREE.Color(0x57063d);
-							uniforms3.color1.value = new THREE.Color(0xFFD225 );
-					uniforms3.color2.value = new THREE.Color(0xff760f);
+					// 		uniforms3.color1.value = new THREE.Color(0xFFD225 );
+					// uniforms3.color2.value = new THREE.Color(0xff760f);
 				}
 
 				else if(sizeVal < 1.8 && sizeVal > 1.3){
 					uniforms4.color1.value = new THREE.Color(0xff2596);
 					uniforms4.color2.value = new THREE.Color(0x57063d);
-							uniforms3.color1.value = new THREE.Color(0xFFD225 );
-					uniforms3.color2.value = new THREE.Color(0xff760f);
+					// 		uniforms3.color1.value = new THREE.Color(0xFFD225 );
+					// uniforms3.color2.value = new THREE.Color(0xff760f);
 				}
 				
 				else if(sizeVal < 1.3 && sizeVal > 1.2){
 					uniforms4.color1.value = new THREE.Color(0xff2596);
 					uniforms4.color2.value = new THREE.Color(0x57063d);
-							uniforms3.color1.value = new THREE.Color(0xFFD225 );
-					uniforms3.color2.value = new THREE.Color(0xff760f);
+					// 		uniforms3.color1.value = new THREE.Color(0xFFD225 );
+					// uniforms3.color2.value = new THREE.Color(0xff760f);
 				}
 
 
@@ -899,22 +922,22 @@
 				else if(sizeVal < 1.1 && sizeVal > 0.9){
 					uniforms4.color1.value = new THREE.Color(0xff2596);
 					uniforms4.color2.value = new THREE.Color(0x57063d);
-							uniforms3.color1.value = new THREE.Color(0xFFD225 );
-					uniforms3.color2.value = new THREE.Color(0xff760f);
+					// 		uniforms3.color1.value = new THREE.Color(0xFFD225 );
+					// uniforms3.color2.value = new THREE.Color(0xff760f);
 				}
 
 				else if(sizeVal < 0.8 && sizeVal > 0.5){
 					uniforms4.color1.value = new THREE.Color(0xff2596);
 					uniforms4.color2.value = new THREE.Color(0x57063d);
-							uniforms3.color1.value = new THREE.Color(0xFFD225 );
-					uniforms3.color2.value = new THREE.Color(0xff760f);
+					// 		uniforms3.color1.value = new THREE.Color(0xFFD225 );
+					// uniforms3.color2.value = new THREE.Color(0xff760f);
 				}
 
 				else if(sizeVal < 0.4 && sizeVal > 0.2){
 					uniforms4.color1.value = new THREE.Color(0xff2596);
 					uniforms4.color2.value = new THREE.Color(0x57063d);
-							uniforms3.color1.value = new THREE.Color(0xFFD225 );
-					uniforms3.color2.value = new THREE.Color(0xff760f);
+					// 		uniforms3.color1.value = new THREE.Color(0xFFD225 );
+					// uniforms3.color2.value = new THREE.Color(0xff760f);
 				}
 
 
