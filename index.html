@@ -8,7 +8,7 @@
 	</head>
 	<body>
 
-		
+		<button>click me</button>
 		<script id="vertexShader2" type="x-shader/x-vertex">
 			varying vec2 vUv;
 			varying vec3 vPosition;
@@ -423,11 +423,7 @@
 						audio.setBuffer( buffer );
 						// audio.setLoop(true);
 					//	audio.setRefDistance(2000);
-						document.addEventListener("click", () => {
-			
-							
-						
-				})
+					
 					} );
 
 				} else {
@@ -436,18 +432,25 @@
 				
 					audio.setMediaElementSource( mediaElement );
 				
-					document.addEventListener("touchstart", () => {
-					
+					document.querySelector("button").addEventListener("touchstart", (e) => {
+						e.preventDefault();
 						mediaElement.play();
 					// mediaElement.resume();	
 				})
+
+				document.querySelector("button").addEventListener("click", (e) => {
+					e.preventDefault();
+					mediaElement.play();
+				// mediaElement.resume();	
+			})
 					
 
 					
 
 				}
 				audio.hasPlaybackControl = true;
-				document.addEventListener("click", () => {
+				document.querySelector("button").addEventListener("click", (e) => {
+					e.preventDefault();
 					audio.play();
 				//	audio.noteOn();
 					//audio.start();
@@ -458,11 +461,12 @@
 					
 						
 				})
-				document.addEventListener("touchstart", () => {
+				document.querySelector("button").addEventListener("touchstart", (e) => {
+					e.preventDefault();
 					audio.play();
 				//	audio.noteOn();
 					//audio.start();
-							var source = listener.context.createBufferSource();
+				var source = listener.context.createBufferSource();
 				source.connect(listener.context.destination);
 				source.start();
 					// console.log(audio)
