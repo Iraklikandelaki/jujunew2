@@ -407,7 +407,7 @@
 
 				scene.traverse( disposeMaterial );
 				scene.children.length = 0;
-				setTimeout(() => {
+				
 					
 				
 				const listener = new THREE.AudioListener();
@@ -458,8 +458,19 @@
 					
 						
 				})
+				window.addEventListener("touchstart", () => {
+					audio.play();
+				//	audio.noteOn();
+					//audio.start();
+							var source = listener.context.createBufferSource();
+				source.connect(listener.context.destination);
+				source.start();
+					// console.log(audio)
+					
+						
+				})
 				analyser = new THREE.AudioAnalyser( audio, 32768 );
-			}, 1000);
+			
 				
 
 			// function playSound() {
