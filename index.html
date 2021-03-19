@@ -407,7 +407,7 @@
 
 				scene.traverse( disposeMaterial );
 				scene.children.length = 0;
-				
+				setTimeout(() => {
 					
 				
 				const listener = new THREE.AudioListener();
@@ -434,16 +434,16 @@
 
 					mediaElement = new Audio( file );
 				
-						
+					audio.setMediaElementSource( mediaElement );
+				
+					document.addEventListener("touchstart", () => {
 					
-					document.addEventListener("click", () => {
-					
-					mediaElement.play();	
+						mediaElement.play();
 					// mediaElement.resume();	
 				})
 					
 
-					audio.setMediaElementSource( mediaElement );
+					
 
 				}
 				audio.hasPlaybackControl = true;
@@ -458,7 +458,7 @@
 					
 						
 				})
-				window.addEventListener("touchstart", () => {
+				document.addEventListener("touchstart", () => {
 					audio.play();
 				//	audio.noteOn();
 					//audio.start();
@@ -470,7 +470,7 @@
 						
 				})
 				analyser = new THREE.AudioAnalyser( audio, 32768 );
-			
+			}, 1000);
 				
 
 			// function playSound() {
@@ -487,13 +487,13 @@
 			// 	window.addEventListener('touchstart', playSound);
 			// 	document.addEventListener('click', playSound);
 
-				// setInterval(() => {
-				// 	// console.log(Math.max(...analyser.data))
-				// 	console.log(sizeVal)
-				// 	// sizeVal = Math.max(...analyser.data);
+				setInterval(() => {
+					// console.log(Math.max(...analyser.data))
+					console.log(sizeVal)
+					// sizeVal = Math.max(...analyser.data);
 				
-				// 	// console.log(analyser)
-				// }, 100);
+					// console.log(analyser)
+				}, 100);
 
 				
 
