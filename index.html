@@ -421,10 +421,11 @@
 					loader.load( file, function ( buffer ) {
 
 						audio.setBuffer( buffer );
-						
+						audio.setLoop(true);
+						audio.setRefDistance(2000);
 						document.addEventListener("click", () => {
 			
-					
+							
 						
 				})
 					} );
@@ -448,7 +449,7 @@
 				audio.hasPlaybackControl = true;
 				document.addEventListener("click", () => {
 					audio.play();
-					
+					audio.noteOn();
 					console.log(audio)
 					
 						
