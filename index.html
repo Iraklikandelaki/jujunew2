@@ -413,16 +413,17 @@
 				const listener = new THREE.AudioListener();
 
 				const audio = new THREE.Audio( listener );
-				const file = './metatron.mp3';
+				const file = './chudnow.mp3';
 
 				if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) {
 
 					const loader = new THREE.AudioLoader();
 					loader.load( file, function ( buffer ) {
-						audio.setRefDistance( 2000 );
+						// audio.setRefDistance( 2000 );
 						audio.setBuffer( buffer );
 						// audio.setLoop(true);
 					//	audio.setRefDistance(2000);
+					audio.play();
 					
 					} );
 
@@ -432,47 +433,13 @@
 				
 					audio.setMediaElementSource( mediaElement );
 				
-					document.querySelector("button").addEventListener("touchstart", (e) => {
-						e.preventDefault();
-						mediaElement.play();
-					// mediaElement.resume();	
-				})
-
-				document.querySelector("button").addEventListener("click", (e) => {
-					e.preventDefault();
 					mediaElement.play();
-				// mediaElement.resume();	
-			})
-					
 
 					
 
 				}
 				audio.hasPlaybackControl = true;
-				document.querySelector("button").addEventListener("click", (e) => {
-					e.preventDefault();
-					audio.play();
-				//	audio.noteOn();
-					//audio.start();
-							var source = listener.context.createBufferSource();
-				source.connect(listener.context.destination);
-				source.start();
-					// console.log(audio)
-					
-						
-				})
-				document.querySelector("button").addEventListener("touchstart", (e) => {
-					e.preventDefault();
-					audio.play();
-				//	audio.noteOn();
-					//audio.start();
-				var source = listener.context.createBufferSource();
-				source.connect(listener.context.destination);
-				source.start();
-					// console.log(audio)
-					
-						
-				})
+				
 				analyser = new THREE.AudioAnalyser( audio, 32768 );
 			
 				
